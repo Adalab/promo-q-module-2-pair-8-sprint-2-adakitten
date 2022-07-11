@@ -36,6 +36,8 @@ const kittenData_3 = {
     race: "British Shorthair",
 };
 
+
+
 const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
 
 //Funciones
@@ -87,6 +89,14 @@ function addNewKitten(event) {
     const valuePhoto = inputPhoto.value;
     const valueName = inputName.value;
     const valueRace = inputRace.value;
+
+    const newKittenDataObject = {
+        name: valueName,
+        race: valueRace,
+        photo: valuePhoto,
+        desc: valueDesc,
+}
+  
     if (valueDesc === "" && valuePhoto === "" && valueName === "") {
         labelMesageError.innerHTML = "Debe rellenar todos los valores";
     } else {
@@ -94,19 +104,9 @@ function addNewKitten(event) {
             labelMesageError.innerHTML = "";
         }
     }
-    //Agregar un nuevo gatito
-    function newKitten () {
-        const newKittenDataObject = {
-        name: valueName.value,
-        race: valueRace.value,
-        photo: valuePhoto.value,
-        desc: valueDesc.value,
-    }
-    
-    kittenDataList.push(newKittenDataObject);
-    }
-    
+      kittenDataList.push(newKittenDataObject);
 }
+
 
 console.log(kittenDataList);
 //Cancelar la búsqueda de un gatito
@@ -136,7 +136,7 @@ renderKittenList(kittenDataList);
 //Eventos
 linkNewFormElememt.addEventListener("click", handleClickNewCatForm);
 searchButton.addEventListener("click", filterKitten);
-buttonAdd.addEventListener("click", addNewKitten);
+buttonAdd.addEventListener("click", renderKittenList);
 buttonCancelForm.addEventListener("click", cancelNewKitten);
 
 
