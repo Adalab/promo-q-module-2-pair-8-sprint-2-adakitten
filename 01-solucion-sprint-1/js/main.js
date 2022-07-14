@@ -82,21 +82,31 @@ function handleClickNewCatForm(event) {
         hideNewCatForm();
     }
 }
+
 //Adicionar nuevo gatito
+
+function nuevoGatito(valueName, valueRace, valuePhoto, valueDesc){
+
+    const newKittenDataObject = {
+        name: valueName,
+        race: valueRace,
+        image: valuePhoto,
+        desc: valueDesc,
+    }
+
+    kittenDataList.push(newKittenDataObject);
+}
+
+
+
 function addNewKitten(event) {
     event.preventDefault();
+
     const valueDesc = inputDesc.value;
     const valuePhoto = inputPhoto.value;
     const valueName = inputName.value;
     const valueRace = inputRace.value;
 
-    const newKittenDataObject = {
-        name: valueName,
-        race: valueRace,
-        photo: valuePhoto,
-        desc: valueDesc,
-}
-  
     if (valueDesc === "" && valuePhoto === "" && valueName === "") {
         labelMesageError.innerHTML = "Debe rellenar todos los valores";
     } else {
@@ -104,7 +114,10 @@ function addNewKitten(event) {
             labelMesageError.innerHTML = "";
         }
     }
-      kittenDataList.push(newKittenDataObject);
+   nuevoGatito(valueName, valueRace, valuePhoto, valueDesc);
+    labelMesageError.innerHTML = 'Mola! Un nuevo gatito en Adalab!';
+    renderKittenList(kittenDataList);
+    console.log(kittenDataList)
 }
 
 
@@ -136,11 +149,5 @@ renderKittenList(kittenDataList);
 //Eventos
 linkNewFormElememt.addEventListener("click", handleClickNewCatForm);
 searchButton.addEventListener("click", filterKitten);
-buttonAdd.addEventListener("click", renderKittenList);
+buttonAdd.addEventListener("click", addNewKitten);
 buttonCancelForm.addEventListener("click", cancelNewKitten);
-
-
-
-
-
-
