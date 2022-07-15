@@ -97,8 +97,6 @@ function nuevoGatito(valueName, valueRace, valuePhoto, valueDesc){
     kittenDataList.push(newKittenDataObject);
 }
 
-
-
 function addNewKitten(event) {
     event.preventDefault();
 
@@ -132,15 +130,14 @@ function cancelNewKitten(event) {
 }
 
 //Filtrar por descripción
+
 function filterKitten(event) {
     event.preventDefault();
     const descrSearchText = input_search_desc.value;
     listElement.innerHTML = "";
-    for (const kittenItem of kittenDataList) {
-        if (kittenItem.desc.includes(descrSearchText)) {
-            listElement.innerHTML += renderKitten(kittenItem);
-        }
-    }
+    const searchKitten = kittenDataList
+    .filter((kittenItem) => kittenItem.desc.includes(descrSearchText))
+    renderKittenList(searchKitten);;    
 }
 
 //Mostrar el litado de gatitos en ell HTML
